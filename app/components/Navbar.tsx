@@ -39,25 +39,25 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="absolute top-0 left-0 w-[90%] z-50 pt-2 px-3 md:px-6 
-                bg-white rounded-[50px] shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)]">
-      <div className="max-w-6xl mx-auto h-16 md:h-20">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="#home" className="flex items-center gap-2">
-              <Image
-                src="/images/logo.png"
-                alt="Haritham Kitchen Logo"
-                width={40}
-                height={40}
-                className="w-8 h-8 md:w-10 md:h-10 object-contain"
-              />
-            </Link>
-          </div>
+    <nav className="absolute top-4 left-1/2 -translate-x-1/2 w-[92%] z-50 px-6 md:px-8 py-3 bg-white rounded-[3rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
+      <div className="flex items-center justify-between h-14 md:h-16 relative">
+      
+        {/* Logo */}
+        <div className="flex-shrink-0 lg:w-[220px]">
+          <Link href="#home" className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt="Haritham Kitchen Logo"
+              width={200}
+              height={50}
+              className="w-auto h-8 md:h-10 lg:h-12 object-contain"
+              priority
+            />
+          </Link>
+        </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+        {/* Desktop Nav Centered */}
+        <div className="hidden lg:flex items-center justify-center space-x-10 flex-grow">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -73,30 +73,29 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-          </div>
+        </div>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="#product"
-              className="hidden sm:inline-flex items-center justify-center px-6 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-brand-primary hover:bg-brand-deep focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary transition-colors min-h-[44px]"
-            >
-              Order Now
-            </Link>
-            <button
-              type="button"
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-primary hover:bg-brand-mint/50 focus:outline-none min-h-[44px] min-w-[44px]"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-expanded={mobileMenuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
+        {/* CTA & Mobile Toggle */}
+        <div className="flex items-center justify-end lg:w-[220px] gap-4">
+          <Link
+            href="#product"
+            className="hidden sm:inline-flex items-center justify-center px-8 py-2.5 border border-transparent rounded-full shadow-sm text-[15px] font-medium text-white bg-[#3f9e31] hover:bg-[#2b7c1f] focus:outline-none transition-colors min-h-[44px]"
+          >
+            Order Now
+          </Link>
+          <button
+            type="button"
+            className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-primary hover:bg-brand-mint/50 focus:outline-none min-h-[44px] min-w-[44px]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="block h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="block h-6 w-6" aria-hidden="true" />
+            )}
+          </button>
         </div>
       </div>
 
