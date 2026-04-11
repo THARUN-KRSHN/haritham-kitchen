@@ -11,9 +11,13 @@ import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <main id="main-content" className="flex min-h-screen flex-col w-full overflow-x-hidden pt-14 md:pt-16 lg:pt-0">
-      <Navbar />
-      <Hero />
+    <main id="main-content" className="flex min-h-screen flex-col w-full overflow-x-hidden bg-white">
+      <div className="px-4 pt-4 lg:px-6 lg:pt-6 w-full max-w-[1500px] mx-auto">
+        <div className="bg-[#E7F2E5] rounded-[2.5rem] relative overflow-hidden">
+          <Navbar />
+          <Hero />
+        </div>
+      </div>
       <BrandTrustStrip />
       <ProductSection />
       <LocalShops />

@@ -23,7 +23,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      
+
       // Simple scroll spy
       const sections = navLinks.map(link => link.name.toLowerCase());
       for (const section of [...sections].reverse()) {
@@ -39,12 +39,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-brand-offwhite/95 backdrop-blur-md shadow-sm h-14 md:h-16' : 'bg-transparent h-16 md:h-20'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <nav className="absolute top-0 left-0 w-[90%] z-50 pt-2 px-3 md:px-6 
+                bg-white rounded-[50px] shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)]">
+      <div className="max-w-6xl mx-auto h-16 md:h-20">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -56,9 +53,6 @@ export default function Navbar() {
                 height={40}
                 className="w-8 h-8 md:w-10 md:h-10 object-contain"
               />
-              <span className="font-semibold text-lg tracking-tight text-brand-dark hidden sm:block">
-                Haritham Kitchen
-              </span>
             </Link>
           </div>
 
@@ -122,11 +116,10 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-4 text-base font-medium rounded-md transition-colors min-h-[44px] ${
-                    activeSection === link.name.toLowerCase()
-                      ? 'bg-brand-mint text-brand-primary'
-                      : 'text-brand-dark hover:bg-brand-cream hover:text-brand-primary'
-                  }`}
+                  className={`block px-3 py-4 text-base font-medium rounded-md transition-colors min-h-[44px] ${activeSection === link.name.toLowerCase()
+                    ? 'bg-brand-mint text-brand-primary'
+                    : 'text-brand-dark hover:bg-brand-cream hover:text-brand-primary'
+                    }`}
                 >
                   {link.name}
                 </Link>

@@ -42,11 +42,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center bg-brand-offwhite overflow-hidden pt-20">
-      {/* Subtle Background Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-mint/40 via-brand-offwhite to-brand-offwhite pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12 lg:py-0">
+    <section id="home" className="relative min-h-[85vh] flex items-center pt-24 pb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full lg:py-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
           {/* Text Content */}
@@ -61,37 +58,28 @@ export default function Hero() {
                 <motion.span
                   key={index}
                   variants={prefersReducedMotion ? {} : wordVariants}
-                  className="inline-block mr-3 mb-2"
+                  className={`inline-block mr-3 mb-2 ${word === 'Inji' || word === 'Curry' ? 'text-brand-deep' : ''}`}
                 >
                   {word}
                 </motion.span>
               ))}
             </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: prefersReducedMotion ? 0 : 0.8, duration: 0.5 }}
-              className="text-base md:text-lg text-brand-dark/80 mb-8 max-w-lg leading-relaxed font-sans"
-            >
-              Crafted with handpicked fresh ginger, natural tamarind, and generational spices. 100% natural, homemade authentic Kerala flavor.
-            </motion.p>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: prefersReducedMotion ? 0 : 1, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              transition={{ delay: prefersReducedMotion ? 0 : 0.8, duration: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-6"
             >
               <Link
                 href="#product"
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand-primary hover:bg-brand-deep transition-all shadow-md hover:shadow-lg min-h-[44px]"
+                className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-xl text-white bg-[#3f9e31] hover:bg-brand-deep transition-all min-h-[44px]"
               >
                 Order Now
               </Link>
               <Link
                 href="#about"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-brand-dark text-base font-medium rounded-full text-brand-dark hover:bg-brand-dark hover:text-white transition-all min-h-[44px]"
+                className="inline-flex items-center justify-center px-8 py-3.5 border border-[#3f9e31] text-base font-medium rounded-xl text-[#3f9e31] hover:bg-[#3f9e31]/5 transition-all min-h-[44px]"
               >
                 Explore Product
               </Link>
@@ -99,20 +87,20 @@ export default function Hero() {
           </div>
 
           {/* Image */}
-          <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end h-[40vh] lg:h-[70vh] min-h-[300px]">
+          <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end h-[50vh] lg:h-[80vh] min-h-[400px]">
             <motion.div
               variants={prefersReducedMotion ? {} : imgVariants}
               initial="hidden"
               animate="visible"
-              className="relative w-full max-w-xs sm:max-w-md lg:max-w-full h-full"
+              className="relative w-full h-full lg:scale-110 lg:translate-x-12 translate-y-12"
             >
               <Image
-                src="/images/product.png"
+                src="/images/landing.png"
                 alt="Authentic Kerala Inji Curry Jar"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain drop-shadow-2xl"
+                className="object-contain lg:object-right-bottom drop-shadow-2xl"
               />
             </motion.div>
           </div>
