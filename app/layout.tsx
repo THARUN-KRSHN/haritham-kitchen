@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 
-const montserrat = Montserrat({ 
-  subsets: ['latin'], 
+const montserrat = Montserrat({
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '900'],
   style: ['normal', 'italic'],
   variable: '--font-montserrat',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Haritham Kitchen',
     images: [
       {
-        url: '/og-image.jpg', // Placeholder
+        url: '/logo.png', // Placeholder
         width: 1200,
         height: 630,
       },

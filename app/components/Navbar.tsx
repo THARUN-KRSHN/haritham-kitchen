@@ -16,13 +16,13 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  // scrolled state removed to fix unused variable warning
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // scroll detection removed
 
       // Simple scroll spy
       const sections = navLinks.map(link => link.name.toLowerCase());

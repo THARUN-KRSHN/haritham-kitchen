@@ -27,17 +27,17 @@ export default function Hero() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   };
 
   const imgVariants = {
     hidden: { opacity: 0, scale: 0.96 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { duration: 0.7, ease: 'easeOut', delay: 0.4 } 
+      transition: { duration: 0.7, ease: 'easeOut' as const, delay: 0.4 }
     }
   };
 
@@ -45,7 +45,7 @@ export default function Hero() {
     <section id="home" className="relative min-h-[85vh] flex items-center pt-24 pb-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full lg:py-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
+
           {/* Text Content */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
             <motion.h1
@@ -104,7 +104,7 @@ export default function Hero() {
               />
             </motion.div>
           </div>
-          
+
         </div>
       </div>
     </section>
