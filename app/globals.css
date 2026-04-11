@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-offwhite text-brand-dark font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-brand-dark;
+  }
+
+  /* Focus outline for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-primary ring-offset-2 ring-offset-brand-offwhite;
+  }
+}
