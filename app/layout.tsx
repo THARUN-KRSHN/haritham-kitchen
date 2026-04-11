@@ -1,18 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ 
+const montserrat = Montserrat({ 
   subsets: ['latin'], 
-  weight: ['400', '500', '600'],
-  variable: '--font-inter',
-  display: 'swap'
-});
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'], 
-  weight: ['700'],
-  variable: '--font-playfair',
+  weight: ['300', '400', '500', '600', '700', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-montserrat',
   display: 'swap'
 });
 
@@ -47,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="font-sans bg-brand-offwhite text-brand-dark antialiased selection:bg-brand-mint selection:text-brand-dark">
+    <html lang="en" className={`${montserrat.variable} scroll-smooth`}>
+      <body className={`${montserrat.className} bg-brand-offwhite text-brand-dark antialiased selection:bg-brand-mint selection:text-brand-dark`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-brand-primary focus:text-white">
           Skip to main content
         </a>

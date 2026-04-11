@@ -33,7 +33,7 @@ export default function ProductSection() {
   return (
     <section id="product" className="pb-32 bg-white relative z-20">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative pt-20">
-        
+
         {/* Floating Logo Badge */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-3xl shadow-[0px_8px_30px_rgba(0,0,0,0.08)] px-10 py-5 border border-brand-mint/50 flex flex-col items-center justify-center">
           <Image
@@ -47,13 +47,13 @@ export default function ProductSection() {
 
         {/* White Rounded Container */}
         <div className="bg-white rounded-[3rem] pt-32 pb-20 px-8 md:px-12 lg:px-20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-[#eff3ef] relative z-20 block">
-          
+
           <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-medium text-[#253B1F] mb-16 lg:mb-24 text-center tracking-tight font-sans">
             Our Signature Product
           </h2>
 
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
-            
+
             {/* Left panel: Image */}
             <motion.div
               initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -40 }}
@@ -84,7 +84,7 @@ export default function ProductSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
                 Traditional Ginger Curry
               </h3>
-              
+
               <p className="text-lg md:text-xl text-[#3f9e31] font-light mb-10 leading-relaxed font-sans">
                 Our signature Inji Curry is a burst of flavors — tangy, sweet, and spicy — made from fresh ginger, tamarind, jaggery, and a blend of aromatic spices. Slow-cooked to perfection, just like grandma used to make.
               </p>
@@ -113,15 +113,15 @@ export default function ProductSection() {
                   <span className="text-lg font-medium text-brand-brown/70">/ 250g jar</span>
                 </div>
                 <div className="flex-grow flex justify-end">
-                    <Link
-                      href="#contact"
-                      className="inline-flex items-center justify-center px-10 py-3.5 border border-transparent text-base font-medium rounded-xl text-white bg-[#3f9e31] hover:bg-brand-deep transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary min-h-[44px]"
-                    >
-                      Order Now
-                    </Link>
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center justify-center px-10 py-3.5 border border-transparent text-base font-medium rounded-xl text-white bg-[#3f9e31] hover:bg-brand-deep transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary min-h-[44px]"
+                  >
+                    Order Now
+                  </Link>
                 </div>
               </div>
-              
+
             </motion.div>
           </div>
         </div>

@@ -2,107 +2,118 @@
 
 import { useState } from 'react';
 import { testimonials } from '@/lib/testimonials';
-import Image from 'next/image';
-import { Quote } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTestimonial = testimonials[activeIndex];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <section id="testimonials" className="py-20 bg-brand-offwhite border-t border-brand-mint/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="mb-12">
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-primary mb-2 block">
-            What Our
-          </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-brand-dark mb-4">
-            Customers Say
-          </h2>
-        </div>
+        {/* The Missing Background Rectangle is this container */}
+        <div className="bg-brand-mint/60 rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col gap-10 overflow-hidden relative">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-4"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-7xl text-brand-dark flex flex-col font-light">
+              <span>What Our</span>
+              <strong className="font-semibold mt-1">Customer Say</strong>
+            </h2>
+          </motion.div>
 
-        {/* Desktop Layout (Two Panels) */}
-        <div className="hidden lg:flex gap-8 items-start">
-          {/* Left Panel: Previews */}
-          <div className="w-1/3 flex flex-col gap-3">
-            {testimonials.map((t, idx) => (
-              <button
-                key={t.id}
-                onClick={() => setActiveIndex(idx)}
-                className={`flex items-center gap-4 p-4 rounded-2xl border transition-all text-left ${
-                  activeIndex === idx
-                    ? 'bg-white border-brand-primary shadow-sm'
-                    : 'bg-transparent border-brand-mint hover:bg-white/50'
-                }`}
-              >
-                <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-brand-mint">
-                  {t.avatarUrl && (
-                    <Image src={t.avatarUrl} alt={t.name} fill className="object-cover" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-brand-dark truncate">{t.name}</p>
-                  <p className="text-sm text-brand-dark/60 truncate">{t.quote}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Right Panel: Expanded Active */}
-          <div className="w-2/3 bg-white p-12 rounded-3xl shadow-sm border border-brand-mint relative overflow-hidden min-h-[350px] flex flex-col justify-center">
-            <Quote className="absolute top-8 right-8 w-24 h-24 text-brand-mint/30 rotate-180" />
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="relative z-10"
-              >
-                <p className="text-xl md:text-2xl font-serif text-brand-dark font-medium leading-relaxed italic mb-8">
-                  &quot;{activeTestimonial.quote}&quot;
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden bg-brand-mint">
-                    <Image src={activeTestimonial.avatarUrl} alt={activeTestimonial.name} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg text-brand-dark">{activeTestimonial.name}</h4>
-                    <p className="text-brand-primary font-medium">{activeTestimonial.designation}</p>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Mobile Layout (Carousel) */}
-        <div className="lg:hidden flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 pb-8 -mx-4 px-4">
-          {testimonials.map((t) => (
-            <div
-              key={t.id}
-              className="snap-center shrink-0 w-[85vw] sm:w-[60vw] bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-brand-mint flex flex-col justify-between relative"
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            
+            {/* Left Panel: Previews */}
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="lg:w-1/2 flex flex-col gap-4"
             >
-              <Quote className="absolute top-4 right-4 w-12 h-12 text-brand-mint/30 rotate-180" />
-              <p className="text-lg font-serif text-brand-dark font-medium leading-relaxed italic mb-6 relative z-10">
-                &quot;{t.quote}&quot;
-              </p>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-brand-mint flex-shrink-0">
-                  <Image src={t.avatarUrl} alt={t.name} fill className="object-cover" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-brand-dark leading-tight">{t.name}</h4>
-                  <p className="text-brand-primary text-sm font-medium">{t.designation}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              {testimonials.map((t, idx) => (
+                <motion.button
+                  variants={itemVariants}
+                  key={t.id}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`flex flex-col sm:flex-row items-start sm:items-center p-5 rounded-3xl transition-all text-left shadow-sm hover:shadow-md ${
+                    activeIndex === idx
+                      ? 'bg-white scale-[1.02] shadow-md border border-brand-primary/20'
+                      : 'bg-white/90 hover:bg-white border border-transparent'
+                  }`}
+                >
+                  <div className="flex items-center w-full gap-4">
+                    <div className="w-14 h-14 rounded-full bg-brand-primary flex-shrink-0" />
+                    <div className="flex-1 min-w-0 pr-4">
+                      <p className="font-bold text-brand-dark truncate sm:whitespace-normal sm:line-clamp-2">
+                        {t.quote.length > 45 ? t.quote.substring(0, 45) + '...' : t.quote}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0 text-right self-end sm:self-center pt-2 sm:pt-0">
+                      <p className="text-sm font-medium text-brand-dark/80 whitespace-nowrap">{t.name}</p>
+                    </div>
+                  </div>
+                </motion.button>
+              ))}
+            </motion.div>
 
+            {/* Right Panel: Expanded Active */}
+            <motion.div 
+               initial={{ opacity: 0, x: 30 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8, ease: "easeOut" }}
+               className="lg:w-1/2"
+            >
+              <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-brand-mint min-h-full flex flex-col justify-between h-full">
+                {/* Image Placeholder */}
+                <div className="w-full h-48 md:h-64 bg-brand-mint/40 rounded-2xl mb-8 flex-shrink-0" />
+                
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col h-full justify-between"
+                  >
+                    <p className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-primary text-center leading-snug mb-8">
+                       {activeTestimonial.quote}
+                    </p>
+                    <div className="text-right mt-auto">
+                      <h4 className="font-semibold text-lg text-brand-dark">{activeTestimonial.name}</h4>
+                      <p className="text-brand-dark/70 font-medium">{activeTestimonial.designation}</p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
       </div>
     </section>
   );
