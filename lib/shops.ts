@@ -13,7 +13,7 @@ export const shops: Shop[] = [
     name: "Kerala Store",
     address: "MG Road, Kochi, Kerala",
     phone: "+91 98765 43210",
-    imageUrl: "/images/product.png",
+    imageUrl: "/images/shop1.jpg",
     category: "RETAIL PARTNER"
   },
   {
@@ -21,7 +21,7 @@ export const shops: Shop[] = [
     name: "Fresh Market",
     address: "Palayam, Trivandrum, Kerala",
     phone: "+91 98765 43211",
-    imageUrl: "/images/product.png",
+    imageUrl: "/images/shop2.jpg",
     category: "PREMIUM STOCKIST"
   },
   {
@@ -29,7 +29,7 @@ export const shops: Shop[] = [
     name: "Spice Route",
     address: "SM Street, Kozhikode, Kerala",
     phone: "+91 98765 43212",
-    imageUrl: "/images/product.png",
+    imageUrl: "/images/shop3.webp",
     category: "LOCAL DELI"
   }
 ];

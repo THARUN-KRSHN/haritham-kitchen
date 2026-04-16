@@ -65,7 +65,7 @@ export default function Navbar() {
             className="text-white hover:text-white/70 transition-colors p-1 hidden sm:block group"
             aria-label="History"
           >
-            <RotateCcw strokeWidth={1} className="w-6 h-6 group-hover:scale-105 transition-transform" />
+
           </button>
         </div>
 
