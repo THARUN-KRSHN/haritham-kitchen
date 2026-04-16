@@ -10,6 +10,13 @@ export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Prevent scroll when a drawer is open
   useEffect(() => {
@@ -43,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full z-40 px-6 py-6 md:px-10 flex items-center justify-between pointer-events-none">
+      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 pointer-events-none ${scrolled ? 'py-4 bg-[#111611]/80 backdrop-blur-md shadow-lg border-b border-white/5' : 'py-6 md:py-8 bg-transparent'} px-6 md:px-10 flex items-center justify-between`}>
 
         {/* Left Side: Icons */}
         <div className="flex items-center gap-6 pointer-events-auto">
@@ -68,9 +75,9 @@ export default function Navbar() {
             <Image
               src="/images/logo.png"
               alt="Haritham"
-              width={180}
-              height={45}
-              className="w-auto h-8 md:h-12 object-contain "
+              width={96}
+              height={24}
+              className="w-auto h-10 md:h-12 object-contain"
               priority
             />
           </Link>

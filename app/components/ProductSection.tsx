@@ -1,9 +1,10 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 const features = [
   "100% Homemade",
@@ -15,14 +16,21 @@ const features = [
 ];
 
 export default function ProductSection() {
-  const prefersReducedMotion = useReducedMotion();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Prevent scroll when modal is open
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [modalOpen]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
@@ -31,101 +39,171 @@ export default function ProductSection() {
   };
 
   return (
-    <section id="product" className="pb-32 bg-white relative z-20">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative pt-20">
+    <section id="product" className="relative min-h-screen flex items-center justify-center overflow-hidden z-20">
+      {/* Immersive Parallax Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src="/images/product-bg.jpeg"
+          alt="Spices background"
+          fill
+          className="object-cover object-center fixed"
+          quality={90}
+          priority
+        />
+        {/* Dark subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111611] via-[#111611]/80 to-[#111611]/50 mix-blend-multiply" />
+      </div>
 
-        {/* Floating Logo Badge */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-3xl shadow-[0px_8px_30px_rgba(0,0,0,0.08)] px-10 py-5 border border-brand-mint/50 flex flex-col items-center justify-center">
-          <Image
-            src="/images/logo.png"
-            alt="Haritham Kitchen Logo"
-            width={240}
-            height={60}
-            className="object-contain"
-          />
-        </div>
+      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 py-32 flex flex-col items-center justify-center">
+        {/* Centerpiece Image Card */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.95, y: 30 }}
+           whileInView={{ opacity: 1, scale: 1, y: 0 }}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
+           className="relative group cursor-pointer mb-12"
+           onClick={() => setModalOpen(true)}
+        >
+          <div className="w-[280px] h-[350px] md:w-[360px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl relative transition-transform duration-500 group-hover:-translate-y-2">
+            <Image
+              src="/images/product.png"
+              alt="Haritham Kitchen Inji Curry"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 280px, 360px"
+              priority
+            />
+            {/* Soft overlay on hover only */}
+            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
+        </motion.div>
 
-        {/* White Rounded Container */}
-        <div className="bg-white rounded-[3rem] pt-32 pb-20 px-8 md:px-12 lg:px-20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-[#eff3ef] relative z-20 block">
-
-          <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-medium text-[#253B1F] mb-16 lg:mb-24 text-center tracking-tight font-sans">
-            Our Signature Product
+        {/* Minimal CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center"
+        >
+          <h2 className="text-5xl md:text-6xl font-serif text-white mb-3 drop-shadow-md tracking-wide">
+            Inji Curry
           </h2>
+          <p className="text-[#d8ebd6] text-lg md:text-xl font-light mb-10 tracking-wide font-sans">
+            Traditional Ginger Curry &mdash; ₹249
+          </p>
 
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
-
-            {/* Left panel: Image */}
-            <motion.div
-              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-full lg:w-[45%] flex"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <button
+              onClick={() => setModalOpen(true)}
+              className="px-8 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm text-sm uppercase tracking-widest font-medium"
             >
-              <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-brand-dark shadow-2xl flex items-center justify-center">
-                <Image
-                  src="/images/product.png"
-                  alt="Traditional Ginger Curry Jar"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </motion.div>
-
-            {/* Right panel: Details */}
-            <motion.div
-              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="w-full lg:w-[55%] flex flex-col pt-8"
+              View Details +
+            </button>
+            <Link
+              href="#contact"
+              className="px-8 py-3 rounded-full bg-white text-brand-dark hover:bg-brand-mint transition-colors text-sm uppercase tracking-widest font-medium"
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
-                Traditional Ginger Curry
-              </h3>
+              Order Now
+            </Link>
+          </div>
+        </motion.div>
+      </div>
 
-              <p className="text-lg md:text-xl text-[#3f9e31] font-light mb-10 leading-relaxed font-sans">
-                Our signature Inji Curry is a burst of flavors — tangy, sweet, and spicy — made from fresh ginger, tamarind, jaggery, and a blend of aromatic spices. Slow-cooked to perfection, just like grandma used to make.
-              </p>
+      {/* Product Modal */}
+      <AnimatePresence>
+        {modalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6 py-6 md:py-12">
+            {/* Modal Backdrop with heavy blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="absolute inset-0 bg-black/50 backdrop-blur-md"
+              onClick={() => setModalOpen(false)}
+            />
 
-              {/* Feature Checklist */}
-              <motion.ul
-                variants={prefersReducedMotion ? {} : containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-12"
+            {/* Modal Content - Split Pane */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 max-h-full overflow-y-auto md:overflow-y-visible"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setModalOpen(false)}
+                className="absolute top-4 right-4 md:top-6 md:right-6 z-20 w-10 h-10 bg-[#f0f0eb] hover:bg-[#e4e4dd] rounded-full flex items-center justify-center text-brand-dark transition-colors border border-[#d8d8d1]"
+                aria-label="Close modal"
               >
-                {features.map((feature, idx) => (
-                  <motion.li key={idx} variants={itemVariants} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 bg-[#e7f3e8] p-1 rounded">
-                      <Check className="w-4 h-4 text-[#3f9e31] stroke-[3px]" />
-                    </div>
-                    <span className="text-[15px] font-medium text-brand-dark">{feature}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
+                <X className="w-5 h-5" />
+              </button>
 
-              <div className="flex flex-col sm:flex-row items-center gap-6 pt-6 border-t border-brand-mint/50 mt-auto">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl md:text-[3rem] font-bold text-[#3f9e31] leading-none tracking-tight">60Rs</span>
-                  <span className="text-lg font-medium text-brand-brown/70">/ 250g jar</span>
+              {/* Left Pane - Image */}
+              <div className="w-full md:w-1/2 bg-[#f6f5ef] p-10 md:p-16 flex items-center justify-center min-h-[300px] md:min-h-0">
+                <div className="relative w-full aspect-[4/5] max-w-[360px] rounded-2xl overflow-hidden shadow-xl border border-white">
+                  <Image
+                    src="/images/product.png"
+                    alt="Inji Curry Signature"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
-                <div className="flex-grow flex justify-end">
+              </div>
+
+              {/* Right Pane - Details */}
+              <div className="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white">
+                <span className="text-xs uppercase tracking-[0.2em] text-brand-dark/50 mb-3 font-semibold block transition-all">
+                  Signature Product
+                </span>
+                <h3 className="text-4xl md:text-5xl font-serif text-brand-dark mb-4">
+                  Inji Curry
+                </h3>
+                <p className="text-2xl text-[#3f9e31] font-medium mb-6">
+                  ₹249
+                </p>
+
+                <p className="text-brand-dark/70 leading-relaxed mb-8 font-light text-base">
+                  A traditional Kerala ginger curry — tangy, sweet, and spicy. Made with fresh ginger, tamarind, jaggery, and aromatic spices. Slow-cooked to perfection with no preservatives.
+                </p>
+
+                <motion.ul
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-4 mb-10"
+                >
+                  <motion.li variants={itemVariants} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-[#3f9e31]" strokeWidth={2.5} />
+                    <span className="text-[15px] font-medium text-brand-dark/90">250g glass jar</span>
+                  </motion.li>
+                  <motion.li variants={itemVariants} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-[#3f9e31]" strokeWidth={2.5} />
+                    <span className="text-[15px] font-medium text-brand-dark/90">Shelf life: 3 months</span>
+                  </motion.li>
+                  <motion.li variants={itemVariants} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-[#3f9e31]" strokeWidth={2.5} />
+                    <span className="text-[15px] font-medium text-brand-dark/90">Store in a cool, dry place</span>
+                  </motion.li>
+                </motion.ul>
+
+                <div className="mt-auto pt-4">
                   <Link
                     href="#contact"
-                    className="inline-flex items-center justify-center px-10 py-3.5 border border-transparent text-base font-medium rounded-xl text-white bg-[#3f9e31] hover:bg-brand-deep transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary min-h-[44px]"
+                    onClick={() => setModalOpen(false)}
+                    className="inline-flex w-full sm:w-auto items-center justify-center px-12 py-4 bg-[#3f9e31] hover:bg-brand-deep text-white rounded-full transition-all tracking-wide text-sm font-medium shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2"
                   >
                     Order Now
                   </Link>
                 </div>
               </div>
-
             </motion.div>
           </div>
-        </div>
-      </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
