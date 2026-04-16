@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import BrandTrustStrip from './components/BrandTrustStrip';
 import ProductSection from './components/ProductSection';
 import LocalShops from './components/LocalShops';
+import ImageShowcase from './components/ImageShowcase';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
 import ContactSection from './components/ContactSection';
@@ -20,6 +21,7 @@ export default function Home() {
       <BrandTrustStrip />
       <ProductSection />
       <LocalShops />
+      <ImageShowcase />
       <Stats />
       <Testimonials />
       <ContactSection />
