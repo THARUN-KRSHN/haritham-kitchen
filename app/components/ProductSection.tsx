@@ -6,14 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Check, X } from 'lucide-react';
 
-const features = [
-  "100% Homemade",
-  "No Preservatives",
-  "Authentic Kerala Recipe",
-  "Fresh Ginger & Spices",
-  "Rich in Flavor",
-  "Perfect with Rice & Bread"
-];
+
 
 export default function ProductSection() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -54,23 +47,23 @@ export default function ProductSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#111611] via-[#111611]/80 to-[#111611]/50 mix-blend-multiply" />
       </div>
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 py-32 flex flex-col items-center justify-center">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-24 md:py-32 flex flex-col items-center justify-center">
         {/* Centerpiece Image Card */}
         <motion.div
            initial={{ opacity: 0, scale: 0.95, y: 30 }}
            whileInView={{ opacity: 1, scale: 1, y: 0 }}
            viewport={{ once: true, margin: "-100px" }}
            transition={{ duration: 0.8, ease: "easeOut" }}
-           className="relative group cursor-pointer mb-12"
+           className="relative group cursor-pointer mb-14 md:mb-16"
            onClick={() => setModalOpen(true)}
         >
-          <div className="w-[280px] h-[350px] md:w-[360px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl relative transition-transform duration-500 group-hover:-translate-y-2">
+          <div className="w-[240px] h-[300px] md:w-[360px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl relative transition-transform duration-500 group-hover:-translate-y-2 ring-1 ring-white/10">
             <Image
               src="/images/product.png"
               alt="Haritham Kitchen Inji Curry"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 280px, 360px"
+              sizes="(max-width: 768px) 240px, 360px"
               priority
             />
             {/* Soft overlay on hover only */}
@@ -86,23 +79,23 @@ export default function ProductSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
-          <h2 className="text-5xl md:text-6xl font-serif text-white mb-3 drop-shadow-md tracking-wide">
+          <h2 className="text-4xl md:text-6xl font-serif text-white mb-4 drop-shadow-md tracking-tight">
             Inji Curry
           </h2>
-          <p className="text-[#d8ebd6] text-lg md:text-xl font-light mb-10 tracking-wide font-sans">
+          <p className="text-[#d8ebd6] text-base md:text-xl font-light mb-12 tracking-wide font-sans opacity-80 italic font-serif">
             Traditional Ginger Curry &mdash; ₹249
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-6">
             <button
               onClick={() => setModalOpen(true)}
-              className="px-8 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm text-sm uppercase tracking-widest font-medium"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-white/20 text-white hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm text-[11px] md:text-xs uppercase tracking-[0.2em] font-medium"
             >
               View Details +
             </button>
             <Link
               href="#contact"
-              className="px-8 py-3 rounded-full bg-white text-brand-dark hover:bg-brand-mint transition-colors text-sm uppercase tracking-widest font-medium"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-brand-dark hover:bg-brand-mint transition-colors text-[11px] md:text-xs uppercase tracking-[0.2em] font-semibold shadow-xl shadow-black/10"
             >
               Order Now
             </Link>

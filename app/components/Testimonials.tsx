@@ -18,13 +18,13 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="relative min-h-[90vh] lg:min-h-screen overflow-hidden bg-brand-dark flex flex-col lg:flex-row">
-
+    <section id="testimonials" className="relative min-h-[80vh] lg:min-h-screen overflow-hidden bg-brand-dark flex flex-col lg:flex-row">
+      
       {/* Left Panel: Content & Dynamic Color */}
       <motion.div
         animate={{ backgroundColor: activeTestimonial.bgColor }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="relative w-full lg:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-between min-h-[500px] lg:min-h-screen"
+        className="relative w-full lg:w-1/2 p-10 md:p-16 lg:p-24 flex flex-col justify-between min-h-[450px] lg:min-h-screen"
       >
         {/* SVG Decorative Pattern */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -40,8 +40,8 @@ export default function Testimonials() {
 
         {/* Section Title */}
         <div className="relative z-10">
-          <span className="text-white/60 text-xs font-bold uppercase tracking-[0.4em] mb-3 block">Kind Words</span>
-          <h2 className="text-white text-2xl md:text-3xl font-serif italic opacity-80">What our community says</h2>
+          <span className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] mb-4 block">Kind Words</span>
+          <h2 className="text-white text-3xl md:text-3xl font-serif italic mb-2">What our community says</h2>
         </div>
 
         {/* Empty Spacer to push pagination down */}
@@ -62,7 +62,7 @@ export default function Testimonials() {
       </motion.div>
 
       {/* Right Panel: Blurred Image with Overlay */}
-      <div className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-screen overflow-hidden">
+      <div className="relative w-full lg:w-1/2 min-h-[350px] lg:min-h-screen overflow-hidden">
         <Image
           src="/images/testimonial.png"
           alt="Haritham Kitchen Context"
@@ -77,28 +77,30 @@ export default function Testimonials() {
       </div>
 
       {/* Overlapping Content Layer (Minimalist & Aesthetic) */}
-      <div className="absolute inset-0 pointer-events-none z-20 flex items-center lg:items-center px-8 md:px-16 lg:px-24">
+      <div className="absolute inset-0 pointer-events-none z-20 flex items-center lg:items-center px-6 md:px-16 lg:px-24">
         <div className="max-w-7xl w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-4xl pointer-events-auto"
             >
-              <div className="relative flex flex-col items-start text-left">
+              <div className="relative flex flex-col items-start text-left bg-black/10 backdrop-blur-sm p-6 md:p-0 rounded-3xl md:bg-transparent md:backdrop-blur-none">
                 {/* Subtle Quote Icon */}
+                <span className="text-white/20 text-6xl md:text-9xl font-serif leading-none mb-2 md:mb-6 select-none block">“</span>
+                
                 {/* Reduced Font Size for Quote */}
-                <h3 className="text-white text-3xl md:text-4xl lg:text-5xl font-serif leading-[1.3] mb-12 drop-shadow-lg max-w-[90%] md:max-w-3xl">
+                <h3 className="text-white text-2xl md:text-4xl lg:text-5xl font-serif leading-[1.4] mb-10 md:mb-12 drop-shadow-lg max-w-full md:max-w-3xl italic">
                   {activeTestimonial.quote}
                 </h3>
 
                 {/* Profile Info (Integrated with Quote) */}
-                <div className="flex items-center gap-5">
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/30 p-1 bg-white/5 backdrop-blur-sm">
-                    <div className="w-full h-full rounded-full overflow-hidden bg-white/10 flex items-center justify-center text-white text-xl font-serif">
+                <div className="flex items-center gap-4 md:gap-5">
+                  <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/20 p-1 bg-white/5 backdrop-blur-sm">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white/10 flex items-center justify-center text-white text-lg md:text-xl font-serif">
                       {activeTestimonial.avatarUrl ? (
                         <Image src={activeTestimonial.avatarUrl} alt={activeTestimonial.name} fill className="object-cover" />
                       ) : (
@@ -107,10 +109,10 @@ export default function Testimonials() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-white text-xl md:text-2xl font-bold tracking-tight">
+                    <h4 className="text-white text-lg md:text-2xl font-bold tracking-tight">
                       {activeTestimonial.name}
                     </h4>
-                    <p className="text-white/60 text-base md:text-lg italic font-serif">
+                    <p className="text-white/60 text-sm md:text-lg italic font-serif">
                       {activeTestimonial.designation}
                     </p>
                   </div>

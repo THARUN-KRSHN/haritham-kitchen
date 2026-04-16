@@ -7,7 +7,14 @@ import { motion } from 'framer-motion';
 export default function Hero() {
   const lineVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] } }
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 1.2, 
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
+      } 
+    }
   };
 
   return (
@@ -27,7 +34,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 mt-16 lg:mt-24 text-center w-full max-w-5xl">
+      <div className="relative z-10 flex flex-col items-center justify-center px-6 pt-20 pb-12 lg:pt-32 text-center w-full max-w-5xl">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -36,14 +43,14 @@ export default function Hero() {
         >
           <motion.h1
             variants={lineVariants}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-serif font-medium text-[#fcfbf9] mb-6 tracking-wide drop-shadow-xl"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-serif font-medium text-brand-cream mb-8 tracking-tight drop-shadow-2xl leading-[1.1]"
           >
             Welcome
           </motion.h1>
 
           <motion.p
             variants={lineVariants}
-            className="text-lg md:text-xl text-[#e8e6e1] font-light tracking-wide max-w-2xl text-center mb-16 px-4 leading-relaxed"
+            className="text-base md:text-xl text-brand-cream/80 font-light tracking-wide max-w-xl text-center mb-20 px-4 leading-relaxed italic font-serif"
           >
             Immerse yourself in the world of Haritham Kitchen and be inspired by a new, harmonious culinary experience.
           </motion.p>

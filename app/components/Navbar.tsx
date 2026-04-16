@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X, RotateCcw, Heart, ShoppingBag } from 'lucide-react';
+import { Menu, X, Heart, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -45,27 +45,28 @@ export default function Navbar() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } }
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6, 
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
+      } 
+    }
   };
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 pointer-events-none ${scrolled ? 'py-4' : 'py-6 md:py-8 bg-transparent'} px-6 md:px-10 flex items-center justify-between`}>
+      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 pointer-events-none ${scrolled ? 'py-3 bg-brand-dark/80 backdrop-blur-md shadow-lg' : 'py-6 md:py-8 bg-transparent'} px-4 md:px-10 flex items-center justify-between`}>
 
         {/* Left Side: Icons */}
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center gap-4 md:gap-6 pointer-events-auto">
           <button
             onClick={() => setNavOpen(true)}
-            className="text-white hover:text-white/70 transition-colors p-1 group"
+            className="text-white hover:text-white/70 transition-colors p-1.5 group"
             aria-label="Open navigation menu"
           >
-            <Menu strokeWidth={1} className="w-7 h-7 group-hover:scale-105 transition-transform" />
-          </button>
-          <button
-            className="text-white hover:text-white/70 transition-colors p-1 hidden sm:block group"
-            aria-label="History"
-          >
-
+            <Menu strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-105 transition-transform" />
           </button>
         </div>
 
@@ -77,27 +78,27 @@ export default function Navbar() {
               alt="Haritham"
               width={96}
               height={24}
-              className="w-auto h-10 md:h-12 object-contain"
+              className="w-auto h-8 md:h-12 object-contain"
               priority
             />
           </Link>
         </div>
 
         {/* Right Side: Icons */}
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center gap-4 md:gap-6 pointer-events-auto">
           <button
             onClick={() => setWishlistOpen(true)}
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all hover:scale-105"
+            className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all hover:scale-105"
             aria-label="Wishlist"
           >
-            <Heart strokeWidth={1.5} className="w-5 h-5" />
+            <Heart strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             onClick={() => setCartOpen(true)}
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex border border-white/10 items-center justify-center text-white hover:bg-white/20 transition-all hover:scale-105"
+            className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-sm flex border border-white/10 items-center justify-center text-white hover:bg-white/20 transition-all hover:scale-105"
             aria-label="Cart"
           >
-            <ShoppingBag strokeWidth={1.5} className="w-5 h-5" />
+            <ShoppingBag strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
       </nav>

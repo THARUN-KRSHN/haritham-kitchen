@@ -1,9 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import Image from 'next/image';
 
 const AnimatedCounter = ({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) => {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -35,9 +33,9 @@ const AnimatedCounter = ({ from, to, duration = 2 }: { from: number, to: number,
 export default function Stats() {
   return (
     <section className="py-24 bg-brand-offwhite overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-[3rem] overflow-hidden shadow-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl">
 
           {/* Top Left: Branding Box */}
           <motion.div
@@ -45,7 +43,7 @@ export default function Stats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-brand-primary p-12 md:p-16 flex flex-col justify-center relative min-h-[500px] text-white"
+            className="bg-brand-primary p-10 md:p-16 flex flex-col justify-center relative min-h-[400px] md:min-h-[500px] text-white"
           >
             {/* SVG Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -60,11 +58,11 @@ export default function Stats() {
             </div>
 
             <div className="relative z-10">
-              <span className="text-sm font-bold uppercase tracking-widest mb-4 block opacity-80">Our Legacy</span>
-              <h2 className="text-4xl md:text-5xl font-serif italic mb-6 leading-tight">
+              <span className="text-[10px] md:text-sm font-bold uppercase tracking-widest mb-4 block opacity-80">Our Legacy</span>
+              <h2 className="text-3xl md:text-5xl font-serif italic mb-6 leading-tight">
                 Authentic Kerala <br /> Heritage in Every Bite
               </h2>
-              <p className="text-lg opacity-90 max-w-sm">
+              <p className="text-sm md:text-lg opacity-90 max-w-sm font-light leading-relaxed">
                 Rooted in tradition, crafted with love, and delivered with purity. Haritham Kitchen brings you the true essence of homemade goodness.
               </p>
             </div>
@@ -76,12 +74,12 @@ export default function Stats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="bg-white p-12 md:p-16 flex flex-col justify-center items-center text-center min-h-[500px] border-b md:border-b-0 md:border-l border-brand-mint"
+            className="bg-white p-10 md:p-16 flex flex-col justify-center items-center text-center min-h-[350px] md:min-h-[500px] border-b md:border-b-0 md:border-l border-brand-mint"
           >
-            <div className="text-7xl md:text-8xl font-bold text-brand-dark mb-4">
+            <div className="text-5xl md:text-8xl font-bold text-brand-dark mb-4 tracking-tighter">
               <AnimatedCounter from={0} to={500} />+
             </div>
-            <div className="text-xl md:text-2xl font-medium text-brand-dark/60 uppercase tracking-widest">
+            <div className="text-base md:text-2xl font-medium text-brand-dark/40 uppercase tracking-[0.2em]">
               Happy Customers
             </div>
           </motion.div>
@@ -92,12 +90,12 @@ export default function Stats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white p-12 md:p-16 flex flex-col justify-center items-center text-center min-h-[500px] border-t md:border-t-0 md:border-r border-brand-mint order-last md:order-none"
+            className="bg-white p-10 md:p-16 flex flex-col justify-center items-center text-center min-h-[350px] md:min-h-[500px] border-t md:border-t-0 md:border-r border-brand-mint order-last md:order-none"
           >
-            <div className="text-7xl md:text-8xl font-bold text-brand-dark mb-4">
+            <div className="text-5xl md:text-8xl font-bold text-brand-dark mb-4 tracking-tighter">
               <AnimatedCounter from={0} to={1000} />+
             </div>
-            <div className="text-xl md:text-2xl font-medium text-brand-dark/60 uppercase tracking-widest">
+            <div className="text-base md:text-2xl font-medium text-brand-dark/40 uppercase tracking-[0.2em]">
               Units Sold
             </div>
           </motion.div>
@@ -108,7 +106,7 @@ export default function Stats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-brand-brown p-12 md:p-16 flex flex-col justify-center relative min-h-[500px] text-brand-cream"
+            className="bg-brand-brown p-10 md:p-16 flex flex-col justify-center relative min-h-[400px] md:min-h-[500px] text-brand-cream"
           >
             {/* SVG Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -124,11 +122,11 @@ export default function Stats() {
             </div>
 
             <div className="relative z-10">
-              <span className="text-sm font-bold uppercase tracking-widest mb-4 block opacity-80">Our Promise</span>
-              <h2 className="text-4xl md:text-5xl font-serif italic mb-6 leading-tight">
+              <span className="text-[10px] md:text-sm font-bold uppercase tracking-widest mb-4 block opacity-80">Our Promise</span>
+              <h2 className="text-3xl md:text-5xl font-serif italic mb-6 leading-tight">
                 100% Natural <br /> & Pure Ingredients
               </h2>
-              <p className="text-lg opacity-90 max-w-sm">
+              <p className="text-sm md:text-lg opacity-90 max-w-sm font-light leading-relaxed">
                 No preservatives, no artificial colors—only the finest handpicked ingredients from Local gardens.
               </p>
             </div>

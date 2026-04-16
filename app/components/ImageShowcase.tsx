@@ -45,13 +45,13 @@ export default function ImageShowcase() {
   const yOffsets = [y1, y2, y3];
 
   return (
-    <section
+    <section 
       ref={containerRef}
-      className="relative min-h-[80vh] bg-brand-cream overflow-hidden py-32 flex items-center justify-center"
+      className="relative min-h-[60vh] md:min-h-[80vh] bg-brand-cream overflow-hidden py-24 md:py-32 flex items-center justify-center"
     >
       {/* Background Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span className="text-[25vw] font-serif font-black text-brand-mint/40 tracking-[-0.05em] uppercase leading-none">
+        <span className="text-[35vw] md:text-[25vw] font-serif font-black text-brand-mint/40 tracking-[-0.05em] uppercase leading-none">
           HARITHAM
         </span>
       </div>
@@ -69,17 +69,17 @@ export default function ImageShowcase() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-0">
           {images.map((img, idx) => (
             <motion.div
               key={idx}
-              style={{
+              style={{ 
                 rotate: rotations[idx],
                 y: yOffsets[idx],
               }}
-              className={`relative ${img.isCenter ? 'z-20 scale-110 md:-mx-12' : 'z-10'} w-full max-w-[300px] md:w-1/3 aspect-[3/4]`}
+              className={`relative ${img.isCenter ? 'z-20 scale-110 md:-mx-12' : 'z-10'} w-full max-w-[260px] md:max-w-[300px] md:w-1/3 aspect-[3/4]`}
             >
-              <div className={`w-full h-full relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white ${img.isCenter ? 'md:ring-[15px] md:ring-brand-primary/10' : ''}`}>
+              <div className={`w-full h-full relative rounded-[2.5rem] md:rounded-3xl overflow-hidden shadow-2xl border-4 md:border-8 border-white ${img.isCenter ? 'md:ring-[15px] md:ring-brand-primary/10' : ''}`}>
                 <Image
                   src={img.src}
                   alt={img.alt}
