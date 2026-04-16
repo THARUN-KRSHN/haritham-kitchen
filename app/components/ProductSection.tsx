@@ -35,7 +35,7 @@ export default function ProductSection() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative pt-20">
 
         {/* Floating Logo Badge */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-3xl shadow-[0px_8px_30px_rgba(0,0,0,0.08)] px-10 py-5 border border-brand-mint/50 flex flex-col items-center justify-center">
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-3xl shadow-[0px_8px_30px_rgba(0,0,0,0.08)] px-10 py-5 border border-brand-mint/50 flex flex-col items-center justify-center">
           <Image
             src="/images/logo.png"
             alt="Haritham Kitchen Logo"

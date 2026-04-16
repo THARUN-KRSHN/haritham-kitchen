@@ -17,6 +17,10 @@ const config: Config = {
         'brand-offwhite': '#FAFAF7',
         'brand-cream': '#F8F3EB',
       },
+      fontFamily: {
+        sans: ['var(--font-montserrat)'],
+        serif: ['var(--font-playfair)'],
+      },
     },
   },
   plugins: [],
