@@ -50,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 pointer-events-none ${scrolled ? 'py-4 bg-[#111611]/80 backdrop-blur-md shadow-lg border-b border-white/5' : 'py-6 md:py-8 bg-transparent'} px-6 md:px-10 flex items-center justify-between`}>
+      <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 pointer-events-none ${scrolled ? 'py-4' : 'py-6 md:py-8 bg-transparent'} px-6 md:px-10 flex items-center justify-between`}>
 
         {/* Left Side: Icons */}
         <div className="flex items-center gap-6 pointer-events-auto">
